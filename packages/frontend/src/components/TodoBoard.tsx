@@ -45,19 +45,24 @@ function TodoBoard(): React.ReactElement {
     TodoService.edit(id, newValue, is_complete).then(r => {
       if (r.success) {
         r.data.id = r.data.id.toString();
-        let replacedTodos = todos;
-        replacedTodos[todos.findIndex(todo => todo.id === id)] = {
-          id: r.data.id,
-          text: r.data.text,
-          is_complete: r.data.is_complete
-        }
-        setTodos(replacedTodos);
+        const updatedTodos = todos.map(todo => {
+          if (todo.id === id) {
+            return {
+              id: r.data.id,
+              text: r.data.text,
+              is_complete: r.data.is_complete
+            };
+          }
+          return todo;
+        });
+        setTodos(updatedTodos);
         TodoMessage.updateSuccess();
       } else {
         TodoMessage.updateFailed();
       }
     });
-  }
+  };
+  
 
   const removeTodo = (id: string) => {
     TodoService.remove(id).then(r => {
