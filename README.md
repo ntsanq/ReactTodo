@@ -32,3 +32,8 @@ $ cd react-todo-app-training/packages/server
 $ php artisan migrate
 $ php artisan serve
 ``` 
+
+Run your server: http://localhost:3000
+## Author
+
+[@ntsanq - Nguyen Thanh Sang](https://github.com/ntsanq)
